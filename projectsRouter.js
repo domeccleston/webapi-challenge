@@ -54,4 +54,28 @@ router.put('/:id', isValidParamId, (req, res) => {
     });
 });
 
+router.delete('/:id', isValidParamId, (req, res) => {
+  db.remove(req.params.id)
+    .then(project => {
+      if (project) {
+        res.status(200).json(project);
+      } else {
+        res.status(404).json('Invalid project ID');
+      }
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
+});
+
+router.post('/', (req, res) => {
+  db.insert(req.body)
+    .then(project => {
+      res.status(200).json({ message: 'New project created successfully', project });
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
+});
+
 module.exports = router;
