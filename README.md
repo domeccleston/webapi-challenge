@@ -26,13 +26,36 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] Mention two parts of Express that you learned about this week.
 
+Convenience helpers: the Express API features several methods that make writing servers in Node
+easier. For example, response.status() makes it easy to add status headers to our responses, and req.ip tells us the ip address of the request.
+
+Routers: we can break our express apps down into routers using express.Router(), which makes our
+code more flexible and modular.
+
 - [ ] Describe Middleware?
+
+Middleware functions extend the core functionality of express. They are commonly used to alter
+http headers in some way, such as to enable cross-origin sharing or hide certain header data for
+security reasons. We can also write our own custom middleware as a function which takes in a http
+request, does something with it, and either sends back some kind of response such as an error code
+(which prevents any other subsequent code from executing) or calls next() to allow the request to 
+continue. This functionality is useful for error handling, since we can check if incoming requests
+are formatted correctly before we attempt to use them to access our database. 
 
 - [ ] Describe a Resource?
 
+In REST API architecture, all content is treated as resources - so a resource could be a HTML file,
+a string, an image, etc. Resources can then by represented in some data format (usually XML or JSON) and operated on with HTTP methods (GET, POST, PUT, DELETE)
+
 - [ ] What can the API return to help clients know if a request was successful?
 
+In Express we can use res.status() to add an appropriate HTTP status code in our response headers.
+
 - [ ] How can we partition our application into sub-applications?
+
+We can use express.Router(), which creates a new router object: the API docs describe this as an
+"isolated instance of middleware and routes". Routers behave like middleware and are applied in the
+same way with server.use(). We can then treat our new router as a mini Express application and operate on it in the same way.
 
 ## Project Setup
 
