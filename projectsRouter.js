@@ -49,7 +49,7 @@ router.get('/:id/actions', isValidParamId, (req, res) => {
       if (projectActions.length > 1) {
         res.status(200).json(projectActions);
       } else {
-        res.status(404).json('No projects found for that user');
+        res.status(404).json('No actions found for that project');
       }
     })
     .catch(err => {
@@ -62,7 +62,7 @@ router.put('/:id', isValidParamId, (req, res) => {
     .update(req.params.id, req.body)
     .then(project => {
       if (project) {
-        res.status(200).json(project);
+        res.status(200).json({ message: 'PUT request succcessful', project });
       } else {
         res.status(404).json('Invalid project ID');
       }
