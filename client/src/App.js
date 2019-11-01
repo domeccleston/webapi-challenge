@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Route, Link } from 'react-router-dom';
-import { Layout } from 'antd';
 import Projects from './Projects';
 import ProjectPage from './ProjectPage';
 import './App.css';
-
-const { Header, Footer, Content } = Layout;
 
 function App() {
   const [projects, setProjects] = useState([]);
@@ -21,8 +18,8 @@ function App() {
   console.log(projects);
   return (
     <div className="App">
-      <Route exact path="/projects" render={() => <Projects projects={projects}/>}/>
-      <Route path="/projects/:id" render = {(props) => <ProjectPage {...props} projects={projects}/>}/>
+      <Route exact path="/" render={() => <Projects projects={projects}/>}/>
+      <Route path="/:id" render = {(props) => <ProjectPage {...props} projects={projects}/>}/>
     </div>
   );
 }

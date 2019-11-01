@@ -1,18 +1,26 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Card, Layout } from 'antd';
+
+const { Header, Footer, Content } = Layout;
 
 const Projects = ({ projects }) => {
   return (
-    <>
-      <h1>React App</h1>
+    <Layout>
+      <Header className="header"><h1>Projects</h1></Header>
+      <div className="cards">
       {projects.map(project => (
-        <>
-          <Link to={`/projects/${project.id}`}>
-            <h1>{project.name}</h1>
-          </Link>
-        </>
+        <Card
+          className="card"
+          bordered={false}
+          title={project.name}
+          extra={<Link to={`/${project.id}`}>More</Link>}
+        >
+          <p>{project.description}</p>
+        </Card>
       ))}
-    </>
+      </div>
+    </Layout>
   );
 };
 

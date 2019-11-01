@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { Card, Layout, Menu } from 'antd';
 import axios from 'axios';
+const { Header, Footer, Content } = Layout;
 
 const ProjectPage = props => {
   const [project, setProject] = useState({});
@@ -20,20 +22,27 @@ const ProjectPage = props => {
   }, [props]);
   console.log(projectActions);
   return (
-    <>
-      {project && (
-        <>
-          <h1>Project: {project.name}</h1>
-          <h2>Description: {project.description}</h2>
-          <h2>Actions:</h2>
-          {projectActions.length === 0 ? (
-            <h3>None</h3>
-          ) : (
-            projectActions.map(action => <h3>{action.description}</h3>)
-          )}
-        </>
-      )}
-    </>
+    <Layout>
+      <Header className="header">
+        <h1>Projects</h1>
+        <Menu>
+            <Menu.Item>Home</Menu.Item>
+        </Menu>
+      </Header>
+      <div className="large-card-container">
+        {project && (
+          <Card className="large-card" bordered={false} title={project.name}>
+            <h2>{project.description}</h2>
+            <h2>Actions:</h2>
+            {projectActions.length === 0 ? (
+              <h3>None</h3>
+            ) : (
+              projectActions.map(action => <><h3>{action.description}</h3> - </>)
+            )}
+          </Card>
+        )}
+      </div>
+    </Layout>
   );
 };
 
