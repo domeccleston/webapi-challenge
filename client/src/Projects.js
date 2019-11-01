@@ -7,7 +7,7 @@ const Projects = ({ projects }) => {
       <h1>React App</h1>
       {projects.map(project => (
         <>
-          <Link>
+          <Link to={`/projects/${project.id}`}>
             <h1>{project.name}</h1>
           </Link>
         </>
