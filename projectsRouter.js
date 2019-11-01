@@ -1,18 +1,7 @@
 const express = require('express');
 const projectsDb = require('./data/helpers/projectModel');
-
+const isValidParamId = require('./middleware/middleware');
 const router = express.Router();
-
-// error handling middleware
-
-function isValidParamId(req, res, next) {
-  // eslint-disable-next-line radix
-  if (parseInt(req.params.id) > 0) {
-    next();
-  } else {
-    res.status(404).json('ID must be a valid number');
-  }
-}
 
 // routes for /api/projects/
 
